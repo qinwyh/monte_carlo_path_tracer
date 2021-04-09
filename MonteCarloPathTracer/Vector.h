@@ -2,17 +2,18 @@
 #define __VEC_H
 
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 const float EPS = 1e-6;
 
 class Vec3f;
-typedef Vec3f Color3f;
-typedef Vec3f Point3f;
-
+typedef Vec3f Vertex;
+typedef Vec3f Vector;
 
 inline bool is_equal_f(float a, float b) {
-	if (fabs(a - b) < EPS)
-	{
+	if (fabs(a - b) < EPS) {
 		return true;
 	}
 	return false;
@@ -65,6 +66,10 @@ public:
 	inline bool operator == (const Vec3f& u) { return is_equal_f(x, u.x) && is_equal_f(y, u.y) && is_equal_f(z, u.z); }
 	inline bool operator != (const Vec3f& u) { return !(is_equal_f(x, u.x) && is_equal_f(y, u.y) && is_equal_f(z, u.z)); }
 
+	friend inline ostream& operator << (ostream& out, const Vec3f& vec) {
+		out << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")" << endl;
+		return out;
+	}
 };
 
 
