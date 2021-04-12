@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Vector.h"
 
 // °üÎ§ºÐ
@@ -23,7 +24,10 @@ class BoundingBox {
 class Material {
 	public:
 		string name;
+		Vector Ka, Kd, Ks;
+		float Ns, Ni;
 
+		Material() {};
 };
 
 
@@ -58,7 +62,16 @@ class Face {
 
 // Ä£ÐÍ
 class Model {
+	public:
+		string obj_file_path, mtl_file_path;
+		std::vector<Face> faces;
+		std::vector<Material> materials;
 
+		Model() {};
+		Model(string obj_file_path, string mtl_file_path);
+		bool load_files();
+		bool load_obj();
+		bool load_mtl();
 };
 
 #endif
